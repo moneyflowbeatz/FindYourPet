@@ -1,0 +1,47 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main class="register-container">
+        <h2>Регистрация</h2>
+        <form action="/register" method="POST" class="register-form" onsubmit="submitRegistrationForm(event);">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required placeholder="Введите ваш e-mail">
+
+            <label for="first-name">Имя</label>
+            <input type="text" id="first-name" name="first-name" required placeholder="Введите ваше имя">
+
+            <label for="last-name">Фамилия</label>
+            <input type="text" id="last-name" name="last-name" required placeholder="Введите вашу фамилию">
+
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Введите ваш телефон">
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required placeholder="Введите пароль">
+
+            <label for="confirm-password">Повторите пароль</label>
+            <input type="password" id="confirm-password" name="confirm-password" required placeholder="Повторите пароль">
+
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Я согласен на обработку персональных данных</label>
+            </div>
+
+            <button type="submit" class="register-button">Зарегистрироваться</button>
+        </form>
+    </main>
+
+    <div id="footer-container"></div>
+
+  
+    <script src="loadHeaderFooter.js"></script>
+    <script src="formValidation.js"></script>
+</body>
+</html>

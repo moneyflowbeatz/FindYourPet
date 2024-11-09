@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить объявление о найденном животном</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main class="add-container">
+        <h2>Добавить информацию о найденном животном</h2>
+        <form class="add-form" onsubmit="submitAdForm(event);" enctype="multipart/form-data">
+            <label for="contact-phone">Контактный телефон</label>
+            <input type="tel" id="contact-phone" name="contact-phone" required placeholder="Введите ваш телефон">
+
+            <label for="contact-email">E-mail</label>
+            <input type="email" id="contact-email" name="contact-email" required placeholder="Введите ваш e-mail">
+
+            <label for="animal-type">Вид животного</label>
+            <input type="text" id="animal-type" name="animal-type" required placeholder="Введите вид животного">
+
+            <label for="animal-photos">Фотографии (до 3-х)</label>
+            <input type="file" id="animal-photos" name="animal-photos" accept="image/*" multiple>
+
+            <label for="additional-info">Дополнительная информация</label>
+            <textarea id="additional-info" name="additional-info" placeholder="Введите описание (порода, кличка, клеймо, обстоятельства)"></textarea>
+
+            <label for="location">Район</label>
+            <input type="text" id="location" name="location" required placeholder="Введите район">
+
+            <label for="date-found">Дата, когда найдено животное</label>
+            <input type="date" id="date-found" name="date-found" required>
+
+            <button type="submit" class="submit-button">Добавить объявление</button>
+        </form>
+    </main>
+
+    <div id="footer-container"></div>
+
+
+    <script src="loadHeaderFooter.js"></script>
+    <script src="ads.js"></script>
+</body>
+</html>

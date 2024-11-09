@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая Жизнь - Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <h2>Список найденных животных</h2>
+
+       
+        <section class="search-section">
+            <input type="text" id="search-input" placeholder="Введите вид животного, например, кошка">
+            <button onclick="filterAds()">Поиск</button>
+        </section>
+
+       
+        <section id="ads-container" class="ads-container">
+            
+        </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    
+    <script src="loadHeaderFooter.js"></script>
+    <script src="ads.js"></script>
+</body>
+</html>

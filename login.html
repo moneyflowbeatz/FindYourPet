@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main class="login-container">
+        <h2>Вход в личный кабинет</h2>
+        <form onsubmit="submitLoginForm(event);">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required placeholder="Введите ваш e-mail">
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
+
+            <button type="submit" class="login-button">Войти</button>
+            <a href="#" class="forgot-password">Забыли пароль?</a>
+        </form>
+    </main>
+
+    <div id="footer-container"></div>
+
+   
+    <script src="loadHeaderFooter.js"></script>
+    <script src="formValidation.js"></script>
+</body>
+</html>

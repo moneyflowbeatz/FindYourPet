@@ -1,0 +1,373 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.logo img {
+    height: 50px;
+    max-width: 100%; 
+    display: block; 
+    object-fit: contain; 
+}
+
+header {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.search-section, .slider-section, .facts-section, .reviews-section {
+    padding: 20px;
+}
+
+.search-section input {
+    width: 70%;
+    padding: 8px;
+}
+
+.search-section button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.footer-info, .footer-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+/* Основные стили для страницы входа */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #45A049;
+}
+
+.forgot-password {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Основные стили для страницы регистрации */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.register-form label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-form input[type="email"],
+.register-form input[type="text"],
+.register-form input[type="tel"],
+.register-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.terms input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.register-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-button:hover {
+    background-color: #45A049;
+}
+
+/* Основные стили для страницы профиля */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.profile-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.user-info, .user-ads {
+    width: 100%;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.user-info h3, .user-ads h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.user-info p, .ad-item p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.ads-group {
+    margin-bottom: 20px;
+}
+
+.ads-group h4 {
+    font-size: 18px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.ad-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.edit-button, .delete-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #45A049;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+/* Основные стили для страницы добавления объявления */
+.add-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.add-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.add-form label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.add-form input[type="text"],
+.add-form input[type="tel"],
+.add-form input[type="email"],
+.add-form input[type="password"],
+.add-form input[type="date"],
+.add-form input[type="file"],
+.add-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-form textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+.auto-register {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.auto-register input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.password-fields {
+    display: none;
+    flex-direction: column;
+}
+
+.terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.terms input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #45A049;
+}
+
