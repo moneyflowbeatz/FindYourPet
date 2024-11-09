@@ -1,50 +1,6 @@
 async function submitAdForm(event) {
     event.preventDefault();
-
-    const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-        alert('Пожалуйста, войдите в систему, чтобы добавить объявление');
-        window.location.href = 'login.html';
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('contactPhone', document.getElementById('contact-phone').value);
-    formData.append('contactEmail', document.getElementById('contact-email').value);
-    formData.append('animalType', document.getElementById('animal-type').value);
-    formData.append('additionalInfo', document.getElementById('additional-info').value);
-    formData.append('location', document.getElementById('location').value);
-    formData.append('dateFound', document.getElementById('date-found').value);
-
-    const photos = document.getElementById('animal-photos').files;
-    for (let i = 0; i < photos.length && i < 3; i++) {
-        formData.append('photos', photos[i]);
-    }
-
-    try {
-        const response = await fetch('/api/ads', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${authToken}`
-            },
-            body: formData
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            alert('Объявление успешно добавлено!');
-            window.location.href = 'profile.html'; 
-        } else {
-            alert(`Ошибка: ${result.message}`);
-        }
-    } catch (error) {
-        console.error('Ошибка при добавлении объявления:', error);
-        alert('Произошла ошибка, попробуйте еще раз');
-    }
-}
-
-
-async function editAd(adId) {
+    console.log('Форма отправлена');
     const authToken = localStorage.getItem('authToken');
     if (!authToken) {
         alert('Пожалуйста, войдите в систему');
@@ -52,89 +8,58 @@ async function editAd(adId) {
         return;
     }
 
-    const updatedInfo = prompt("Введите новую информацию для объявления:");
-    if (!updatedInfo) return;
+    const adData = {
+        animalType: document.getElementById('animal-type').value,
+        location: document.getElementById('location').value,
+        additionalInfo: document.getElementById('additional-info').value,
+    };
 
     try {
-        const response = await fetch(`/api/ads/${adId}`, {
-            method: 'PATCH',
+        const response = await fetch('http://localhost:5000/ads', {
+            method: 'POST',
             headers: {
                 'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ additionalInfo: updatedInfo })
+            body: JSON.stringify(adData),
         });
 
         if (response.ok) {
-            alert('Объявление успешно обновлено!');
-            window.location.reload(); 
+            alert('Объявление успешно добавлено');
+            loadUserAds(); 
         } else {
-            const result = await response.json();
-            alert(`Ошибка при обновлении объявления: ${result.message}`);
+            const error = await response.json();
+            alert(`Ошибка: ${error.message}`);
         }
     } catch (error) {
-        console.error('Ошибка при обновлении объявления:', error);
-        alert('Произошла ошибка, попробуйте снова');
+        console.error('Ошибка при добавлении объявления:', error);
+        alert('Ошибка сети, попробуйте еще раз.');
     }
 }
 
-
-async function deleteAd(adId) {
+async function loadUserAds() {
     const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-        alert('Пожалуйста, войдите в систему');
-        window.location.href = 'login.html';
-        return;
-    }
-
-    if (!confirm('Вы уверены, что хотите удалить это объявление?')) return;
+    if (!authToken) return;
 
     try {
-        const response = await fetch(`/api/ads/${adId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${authToken}`
-            }
-        });
-
-        if (response.ok) {
-            alert('Объявление успешно удалено');
-            window.location.reload(); 
-        } else {
-            const result = await response.json();
-            alert(`Ошибка при удалении объявления: ${result.message}`);
-        }
-    } catch (error) {
-        console.error('Ошибка при удалении объявления:', error);
-        alert('Произошла ошибка, попробуйте еще раз');
-    }
-}
-
-
-async function loadAds() {
-    try {
-        const response = await fetch('/api/ads', {
+        const response = await fetch('http://localhost:5000/ads', {
             method: 'GET',
             headers: {
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
             }
         });
 
         const ads = await response.json();
-        if (response.ok) {
-            renderAds(ads); 
-        } else {
-            alert(`Ошибка при загрузке объявлений: ${ads.message}`);
-        }
+        displayAds(ads);
     } catch (error) {
         console.error('Ошибка при загрузке объявлений:', error);
-        alert('Ошибка сети, попробуйте позже');
+        alert('Ошибка сети, попробуйте позже.');
     }
 }
 
-
-function renderAds(ads) {
-    const adsContainer = document.getElementById('ads-container');
+function displayAds(ads) {
+    const adsContainer = document.querySelector('.user-ads');
     adsContainer.innerHTML = ''; 
 
     ads.forEach(ad => {
@@ -142,63 +67,23 @@ function renderAds(ads) {
         adItem.classList.add('ad-item');
         adItem.innerHTML = `
             <p><strong>Район:</strong> ${ad.location}</p>
-            <p><strong>Дата добавления:</strong> ${ad.dateAdded}</p>
-            <p><strong>Вид:</strong> ${ad.animalType}</p>
-            <p><strong>Порода:</strong> ${ad.breed}</p>
-            <button onclick="viewAdDetails('${ad.id}')">Подробнее</button>
+            <p><strong>Дата добавления:</strong> ${formatDate(ad.dateAdded)}</p>
+            <p><strong>Тип животного:</strong> ${ad.animalType}</p>
+            <p><strong>Описание:</strong> ${ad.additionalInfo}</p>
+            <button onclick="editAd('${ad.id}')">Редактировать</button>
+            <button onclick="deleteAd('${ad.id}')">Удалить</button>
         `;
         adsContainer.appendChild(adItem);
     });
 }
 
-document.addEventListener('DOMContentLoaded', loadAds);
-
-let allAds = [];
-
-async function loadAds() {
-    try {
-        const response = await fetch('/api/ads', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-        const ads = await response.json();
-        if (response.ok) {
-            allAds = ads; 
-            renderAds(ads);
-        } else {
-            alert(`Ошибка при загрузке объявлений: ${ads.message}`);
-        }
-    } catch (error) {
-        console.error('Ошибка при загрузке объявлений:', error);
-        alert('Ошибка сети, попробуйте позже');
-    }
-}
-
-
-function filterAds() {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const filteredAds = allAds.filter(ad => ad.animalType.toLowerCase().includes(searchTerm));
-    renderAds(filteredAds); я
-}
-
-
-function viewAdDetails(adId) {
-    alert(`Подробная информация о объявлении ${adId}`);
-    
-}
-
-function viewAdDetails(adId) {
-    window.location.href = `details.html?id=${adId}`;
-}
 
 async function editAd(adId) {
     const authToken = localStorage.getItem('authToken');
-    const updatedInfo = prompt("Введите новую информацию для объявления:");
+    if (!authToken) return;
 
-    if (!updatedInfo || !authToken) return;
+    const updatedInfo = prompt("Введите новую информацию для объявления:");
+    if (!updatedInfo) return;
 
     try {
         const response = await fetch(`http://localhost:5000/ads/${adId}`, {
@@ -211,8 +96,8 @@ async function editAd(adId) {
         });
 
         if (response.ok) {
-            alert('Объявление успешно обновлено!');
-            loadUserProfile(); 
+            alert('Объявление успешно обновлено');
+            loadUserAds(); // Обновляем список объявлений
         } else {
             alert('Ошибка при обновлении объявления');
         }
@@ -223,8 +108,9 @@ async function editAd(adId) {
 
 async function deleteAd(adId) {
     const authToken = localStorage.getItem('authToken');
+    if (!authToken) return;
 
-    if (!confirm('Вы уверены, что хотите удалить это объявление?') || !authToken) return;
+    if (!confirm('Вы уверены, что хотите удалить это объявление?')) return;
 
     try {
         const response = await fetch(`http://localhost:5000/ads/${adId}`, {
@@ -235,12 +121,25 @@ async function deleteAd(adId) {
         });
 
         if (response.ok) {
-            alert('Объявление удалено');
-            loadUserProfile(); 
+            alert('Объявление успешно удалено');
+            loadUserAds(); 
         } else {
             alert('Ошибка при удалении объявления');
         }
     } catch (error) {
         console.error('Ошибка при удалении объявления:', error);
     }
+}
+
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+    };
+    return date.toLocaleDateString('ru-RU', options).replace(',', ''); 
 }

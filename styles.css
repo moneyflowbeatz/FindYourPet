@@ -1,4 +1,4 @@
-/* Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -67,7 +67,6 @@ nav ul li a {
     padding: 10px 20px;
 }
 
-/* Основные стили для страницы входа */
 .login-container {
     display: flex;
     flex-direction: column;
@@ -134,7 +133,6 @@ nav ul li a {
     text-decoration: underline;
 }
 
-/* Основные стили для страницы регистрации */
 .register-container {
     display: flex;
     flex-direction: column;
@@ -201,7 +199,6 @@ nav ul li a {
     background-color: #45A049;
 }
 
-/* Основные стили для страницы профиля */
 .profile-container {
     display: flex;
     flex-direction: column;
@@ -281,7 +278,6 @@ nav ul li a {
     background-color: #e53935;
 }
 
-/* Основные стили для страницы добавления объявления */
 .add-container {
     display: flex;
     flex-direction: column;
@@ -369,5 +365,65 @@ nav ul li a {
 
 .submit-button:hover {
     background-color: #45A049;
+}
+
+
+.add-ad-form {
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.add-ad-form h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.add-ad-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.add-ad-form input[type="text"],
+.add-ad-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.add-ad-form input[type="text"]:focus,
+.add-ad-form textarea:focus {
+    border-color: #007bff; 
+    outline: none;
+}
+
+.add-ad-form button[type="submit"] {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; 
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.add-ad-form button[type="submit"]:hover {
+    background-color: #0056b3;
 }
 

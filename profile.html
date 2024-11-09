@@ -24,11 +24,27 @@
             <h3>Ваши объявления</h3>
             
         </section>
+
+        <section class="add-ad-form">
+            <h3>Добавить новое объявление</h3>
+            <form onsubmit="submitAdForm(event)">
+                <label for="animal-type">Тип животного:</label>
+                <input type="text" id="animal-type" required>
+        
+                <label for="location">Район:</label>
+                <input type="text" id="location" required>
+        
+                <label for="additional-info">Дополнительная информация:</label>
+                <textarea id="additional-info"></textarea>
+        
+                <button type="submit">Добавить объявление</button>
+            </form>
+        </section>
     </main>
 
     <div id="footer-container"></div>
 
-   
+    <script src="ads.js"></script>
     <script src="loadHeaderFooter.js"></script>
     <script src="profile.js"></script>
 </body>
