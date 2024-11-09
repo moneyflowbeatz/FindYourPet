@@ -84,10 +84,11 @@ async function submitRegistrationForm(event) {
     const formData = {
         email: document.getElementById('email').value,
         password: document.getElementById('password').value,
+        phone: document.getElementById('phone').value
     };
 
     try {
-        const response = await fetch('http://localhost:5000/register', { 
+        const response = await fetch('http://localhost:5000/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -95,7 +96,7 @@ async function submitRegistrationForm(event) {
 
         const result = await response.json();
         if (response.ok) {
-            localStorage.setItem('authToken', 'valid_token'); 
+            localStorage.setItem('authToken', result.token); 
             alert('Регистрация прошла успешно!');
             window.location.href = 'profile.html'; 
         } else {
@@ -106,4 +107,5 @@ async function submitRegistrationForm(event) {
         alert('Ошибка сети, попробуйте еще раз.');
     }
 }
+
 

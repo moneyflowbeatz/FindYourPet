@@ -8,10 +8,10 @@ async function loadUserProfile() {
     }
 
     try {
-        const response = await fetch('http://localhost:5000/profile', { 
+        const response = await fetch('http://localhost:5000/profile', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${authToken}`, 
+                'Authorization': `Bearer ${authToken}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -30,15 +30,14 @@ async function loadUserProfile() {
     }
 }
 
-
 function displayProfile(user) {
     document.getElementById('email').textContent = user.email;
     document.getElementById('phone').textContent = user.phone;
     document.getElementById('total-ads').textContent = user.totalAds;
 }
 
-
 document.addEventListener('DOMContentLoaded', loadUserProfile);
+
 
 
 function renderUserAds(ads) {
